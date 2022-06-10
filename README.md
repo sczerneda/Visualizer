@@ -1,8 +1,9 @@
-# Visualizer
+# Interface Visualizer
 ## Why does this program exist?
-Because I am a tremendously visual person. 
-Traditional visualizations (such as UML class diagrams) are helpful, but I wanted something that allowed me to drill down and follow the flow of the data itself. What things can I get out of this class? What things can I put in? Do I need something from this class that it can't currently provide? Does it need a function added to return that value?
-All these things might be more obvious to a more experienced programmer/designer, but until I get there, I figured I'd make myself a little helper. 
+Because I am a tremendously visual person.\
+Traditional visualizations (such as UML class diagrams) are helpful, but I wanted something that allowed me to drill down and follow the flow of the data itself. What things can I get out of this class? What things can I put in? Do I need something from this class that it can't currently provide? Does it need a function added to return that value?\
+All these things might be more obvious to a more experienced programmer/designer, but until I get there, I figured I'd make myself a little helper.
+
 
 ## What can I do with this program?
 Right now, not much. But the planned interactions are:
