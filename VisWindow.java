@@ -16,6 +16,7 @@ class VisWindow {
 
         window.setVisible(true);
     }
+    
     /** Draws a start grid as the background. The grid serves as a visual 
      *      guide to the possible positions of the elements added to it */
     public void drawBackgroundGrid(){}

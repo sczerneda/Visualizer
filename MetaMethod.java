@@ -11,17 +11,19 @@ class MetaMethod extends JComponent {
     private ArrayList<Point> inputs;
     private ArrayList<Point> outputs;
     private Point position;
-    private Dimension dim;
+    private Dimension boxDimension;
     private double pointDiameter;
 
     public MetaMethod(){
-        dim = new Dimension(100, 150);
+        boxDimension = new Dimension(100, 150);
         position = new Point(200, 100);
         pointDiameter = 10;
         inputs = new ArrayList<>();
         outputs = new ArrayList<>();
         outputs.add(setOutputPoint());
     }
+
+    /** Updates the inputs */
 
     /** Create and store a list of Point objects that represents where the
      *      inputs will be displayed. Input points are
@@ -36,7 +38,7 @@ class MetaMethod extends JComponent {
         for(int i=0;i<numOfInputs;i++){
             Point center = new Point(
                 (int)position.getX(), 
-                (int)(position.getY() + (i+1)*dim.getHeight()/(numOfInputs+1))
+                (int)(position.getY() + (i+1)*boxDimension.getHeight()/(numOfInputs+1))
             );
         }
     }
@@ -47,8 +49,8 @@ class MetaMethod extends JComponent {
      */
     private Point setOutputPoint(){
         int divisor = 2;
-        double x = position.getX() + dim.getWidth();
-        double y = position.getY() + (dim.getHeight() / divisor);
+        double x = position.getX() + boxDimension.getWidth();
+        double y = position.getY() + (boxDimension.getHeight() / divisor);
         return new Point((int)x, (int)y);
     }
 
@@ -58,25 +60,26 @@ class MetaMethod extends JComponent {
     public void paintComponent(Graphics g){
         //Graphics2D is more useful/usable than Graphics:
         Graphics2D g2 = (Graphics2D) g;
-        Rectangle testRect = new Rectangle(position, dim);
+        Rectangle testRect = new Rectangle(position, boxDimension);
 
-        // Ellipse2D.Double outputTestPoint = new Ellipse2D.Double(
-        //     position.getX() + dim.getWidth() - (pointDiameter/2),
-        //     position.getY() + dim.getHeight()/2 - (pointDiameter/2),
-        //     pointDiameter, pointDiameter
-        // );
+        //TODO Change this so that we're not accessing the ArrayList via an index
         Ellipse2D.Double outputTestPoint = createInterfaceEllipse(outputs.get(0));
 
         g2.draw(testRect);
+
+        g2.setColor(Color.BLUE);
+        g2.fill(outputTestPoint);
         g2.draw(outputTestPoint);
         
         Ellipse2D.Double[] inputTestPoints = new Ellipse2D.Double[2];
         for(int i=0;i<inputTestPoints.length;i++){
             Point center = new Point(
                 (int)position.getX(), 
-                (int)(position.getY() + (i+1)*dim.getHeight()/(inputTestPoints.length+1))
+                (int)(position.getY() + (i+1)*boxDimension.getHeight()/(inputTestPoints.length+1))
             );
             inputTestPoints[i] = createInterfaceEllipse(center);
+            g2.setColor(Color.RED);
+            g2.fill(inputTestPoints[i]);
             g2.draw(inputTestPoints[i]);
         }
 
